@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"/>
+    <title>Создание пользователя</title>
+</head>
+<body>
+<div >
+    <p th:if="${error != null}" th:text="${error}"></p>
+    <form method="post" th:action="@{/admin/deleteUser}">
+        <div>
+            <label for="username">
+                Имя пользователя
+            </label>
+            <input th:value="${username != null ? username : ''}"
+                   id="username" name="username" type="text">
+        </div>
+        <div>
+            <div>
+                <button name="submit" type="submit">
+                    Удалить
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
+</head>
+<body>
+
+</body>
+</html>

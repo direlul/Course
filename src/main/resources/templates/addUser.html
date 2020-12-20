@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"
+    />
+    <title>Создание пользователя</title>
+</head>
+<body>
+<div >
+    <p th:if="${error != null}" th:text="${error}"></p>
+    <form method="post" th:action="@{/admin/createUser}">
+        <div>
+            <label class="control-label " for="username">
+                Имя пользователя
+            </label>
+            <input th:value="${username != null ? username : ''}"
+                   id="username" name="username" type="text">
+        </div>
+        <div>
+            <label for="password">
+                Пароль
+            </label>
+            <input th:value = "${password != null ? password : ''}"
+                   id="password" name="password" type="password">
+        </div>
+        <div >
+            <label for="authority">
+                Роль
+            </label>
+            <select name="authority" id="authority">
+                <option value="ROLE_USER">Пользователь</option>
+                <option value="ROLE_ADMIN">Админ</option>
+            </select>
+        </div>
+        <div>
+            <div>
+                <button name="submit" type="submit">
+                    Создать
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

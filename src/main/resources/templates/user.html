@@ -1,0 +1,277 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Main</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"
+    />
+    <style type="text/css">
+        .tabs { width: 100%; padding: 0px; margin: 0 auto; }
+        .tabs>input { display: none; }
+        .tabs>div {
+            display: none;
+            padding: 12px;
+            border: 1px solid #C0C0C0;
+            background: #FFFFFF;
+        }
+        .tabs>label {
+            display: inline-block;
+            padding: 7px;
+            margin: 0 -5px -1px 0;
+            text-align: center;
+            color: #666666;
+            border: 1px solid #C0C0C0;
+            background: #E0E0E0;
+            cursor: pointer;
+        }
+        .tabs>input:checked + label {
+            color: #000000;
+            border: 1px solid #C0C0C0;
+            border-bottom: 1px solid #FFFFFF;
+            background: #FFFFFF;
+        }
+        #tab_1:checked ~ #txt_1,
+        #tab_2:checked ~ #txt_2,
+        #tab_3:checked ~ #txt_3,
+        #tab_4:checked ~ #txt_4,
+        #tab_5:checked ~ #txt_5,
+        #tab_6:checked ~ #txt_6,
+        #tab_7:checked ~ #txt_7,
+        #tab_8:checked ~ #txt_8,
+        #tab_9:checked ~ #txt_9,
+        #tab_10:checked ~ #txt_10 { display: block; }
+    </style>
+</head>
+
+<body>
+<h2>User Panel</h2>
+<h2><a href="/admin">Админская панель</a></h2>
+<h2><a href="/booking">Забронировать место</a></h2>
+
+<div class="tabs">
+    <input type="radio" name="inset" value="" id="tab_1" checked>
+    <label for="tab_1">Seats</label>
+
+    <input type="radio" name="inset" value="" id="tab_2">
+    <label for="tab_2">Бронирование</label>
+
+    <input type="radio" name="inset" value="" id="tab_3">
+    <label for="tab_3">Покупатели</label>
+
+    <input type="radio" name="inset" value="" id="tab_4">
+    <label for="tab_4">Номера выступлений</label>
+
+    <input type="radio" name="inset" value="" id="tab_5">
+    <label for="tab_5">Выступления</label>
+
+    <input type="radio" name="inset" value="" id="tab_6">
+    <label for="tab_6">Жанры</label>
+
+    <input type="radio" name="inset" value="" id="tab_7">
+    <label for="tab_7">Театр</label>
+
+    <input type="radio" name="inset" value="" id="tab_8">
+    <label for="tab_8">Театральные постановки</label>
+
+    <input type="radio" name="inset" value="" id="tab_9">
+    <label for="tab_9">Свободные места</label>
+
+    <input type="radio" name="inset" value="" id="tab_10">
+    <label for="tab_10">Занятые места</label>
+
+    <div id="txt_1">
+        <table border="1">
+            <tr>
+                <th>theater id</th>
+                <th>block code</th>
+                <th>row number</th>
+                <th>seat number</th>
+                <th>seat status code</th>
+                <th>booking id</th>
+                <th>performance id</th>
+            </tr>
+
+            <tr th:each="seat : ${seats}">
+                <td th:utext="${seat.theaterId}">..</td>
+                <td th:utext="${seat.blockCode}">..</td>
+                <td th:utext="${seat.rowNumber}">..</td>
+                <td th:utext="${seat.seatNumber}">..</td>
+                <td th:utext="${seat.seatStatusCode}">..</td>
+                <td th:utext="${seat.bookingId}">..</td>
+                <td th:utext="${seat.performanceId}">..</td>
+            </tr>
+        </table>
+    </div>
+    <div id="txt_2">
+        <table border="1">
+            <tr>
+                <th>booking_id</th>
+                <th>customer_id</th>
+                <th>booking_made_date</th>
+                <th>peformance_id</th>
+            </tr>
+
+            <tr th:each="booking : ${bookings}">
+                <td th:utext="${booking.bookingId}">..</td>
+                <td th:utext="${booking.customerId}">..</td>
+                <td th:utext="${booking.bookingMadeDate}">..</td>
+                <td th:utext="${booking.performanceId}">..</td>
+            </tr>
+        </table>
+    </div>
+    <div id="txt_3">
+        <table border="1">
+            <tr>
+                <th>customer_id</th>
+                <th>fio</th>
+                <th>mobile_phone</th>
+            </tr>
+
+            <tr th:each="customer : ${customers}">
+                <td th:utext="${customer.customerId}">..</td>
+                <td th:utext="${customer.fio}">..</td>
+                <td th:utext="${customer.mobilePhone}">..</td>
+            </tr>
+        </table>
+    </div>
+    <div id="txt_4">
+        <table border="1">
+            <tr>
+                <th>performance_number</th>
+                <th>performance_start_time</th>
+                <th>performance_end_time</th>
+            </tr>
+
+            <tr th:each="number : ${performanceNumbers}">
+                <td th:utext="${number.performanceNumber}">..</td>
+                <td th:utext="${number.performanceStartTime}">..</td>
+                <td th:utext="${number.performanceEndTime}">..</td>
+            </tr>
+        </table>
+    </div>
+    <div id="txt_5">
+        <table border="1">
+            <tr>
+                <th>performance_id</th>
+                <th>production_id</th>
+                <th>performance_number</th>
+                <th>show_date</th>
+            </tr>
+
+            <tr th:each="performance : ${performances}">
+                <td th:utext="${performance.performanceId}">..</td>
+                <td th:utext="${performance.productionId}">..</td>
+                <td th:utext="${performance.performanceNumber}">..</td>
+                <td th:utext="${performance.showDate}">..</td>
+            </tr>
+        </table>
+    </div>
+    <div id="txt_6">
+        <table border="1">
+            <tr>
+                <th>production_type_id</th>
+                <th>production_type_description</th>
+            </tr>
+
+            <tr th:each="productionType : ${productionTypes}">
+                <td th:utext="${productionType.productionTypeId}">..</td>
+                <td th:utext="${productionType.productionTypeDescription}">..</td>
+            </tr>
+        </table>
+    </div>
+    <div id="txt_7">
+        <table border="1">
+            <tr>
+                <th>theater_id</th>
+                <th>theater_name</th>
+                <th>theater_manager</th>
+                <th>theater_phone</th>
+                <th>theater_address</th>
+                <th>other_details</th>
+            </tr>
+
+            <tr th:each="theater : ${theaters}">
+                <td th:utext="${theater.theaterId}">..</td>
+                <td th:utext="${theater.theaterName}">..</td>
+                <td th:utext="${theater.theaterManager}">..</td>
+                <td th:utext="${theater.theaterPhone}">..</td>
+                <td th:utext="${theater.theaterAddress}">..</td>
+                <td th:utext="${theater.otherDetails}">..</td>
+            </tr>
+        </table>
+    </div>
+    <div id="txt_8">
+        <table border="1">
+            <tr>
+                <th>production_id</th>
+                <th>production_type_id</th>
+                <th>theater_id</th>
+                <th>production_name</th>
+                <th>production_description</th>
+                <th>other_details</th>
+            </tr>
+
+            <tr th:each="theatricalProduction : ${theatricalProductions}">
+                <td th:utext="${theatricalProduction.productionId}">..</td>
+                <td th:utext="${theatricalProduction.productionTypeId}">..</td>
+                <td th:utext="${theatricalProduction.theaterId}">..</td>
+                <td th:utext="${theatricalProduction.productionName}">..</td>
+                <td th:utext="${theatricalProduction.productionDescription}">..</td>
+                <td th:utext="${theatricalProduction.otherDetails}">..</td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="txt_9">
+        <table border="1">
+            <tr>
+                <th>theater id</th>
+                <th>block code</th>
+                <th>row number</th>
+                <th>seat number</th>
+                <th>seat status code</th>
+                <th>booking id</th>
+                <th>performance id</th>
+            </tr>
+
+            <tr th:each="seat : ${freeSeats}">
+                <td th:utext="${seat.theaterId}">..</td>
+                <td th:utext="${seat.blockCode}">..</td>
+                <td th:utext="${seat.rowNumber}">..</td>
+                <td th:utext="${seat.seatNumber}">..</td>
+                <td th:utext="${seat.seatStatusCode}">..</td>
+                <td th:utext="${seat.bookingId}">..</td>
+                <td th:utext="${seat.performanceId}">..</td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="txt_10">
+        <table border="1">
+            <tr>
+                <th>theater id</th>
+                <th>block code</th>
+                <th>row number</th>
+                <th>seat number</th>
+                <th>seat status code</th>
+                <th>booking id</th>
+                <th>performance id</th>
+            </tr>
+
+            <tr th:each="seat : ${bookedSeats}">
+                <td th:utext="${seat.theaterId}">..</td>
+                <td th:utext="${seat.blockCode}">..</td>
+                <td th:utext="${seat.rowNumber}">..</td>
+                <td th:utext="${seat.seatNumber}">..</td>
+                <td th:utext="${seat.seatStatusCode}">..</td>
+                <td th:utext="${seat.bookingId}">..</td>
+                <td th:utext="${seat.performanceId}">..</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+</body>
+</html>

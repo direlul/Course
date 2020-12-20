@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"
+    />
+    <title>Админ</title>
+</head>
+<body>
+<h2>Панель админа</h2>
+<h3>Пользователи</h3>
+<table border="1">
+    <tr>
+        <th>username</th>
+        <th>password</th>
+        <th>isEnabled</th>
+        <th>authority</th>
+    </tr>
+
+    <tr th:each="user : ${users}">
+        <td th:utext="${user.username}">..</td>
+        <td th:utext="${user.password}">..</td>
+        <td th:utext="${user.enabled}">..</td>
+        <td th:utext="${user.authority}">..</td>
+    </tr>
+</table>
+<a href="/admin/createUser">Добавить пользователя</a>
+<a href="/admin/deleteUser">Удалить пользователя</a>
+</body>
+</html>

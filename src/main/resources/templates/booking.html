@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"
+    />
+    <title>Booking</title>
+</head>
+<body>
+<form th:action="@{/booking}" th:object="${bookingForm}" method="POST">
+    <p>ФИО: <input type="text" name="fio"></p>
+    <p>Номер телефона: <input type="number" name="numberPhone"></p>
+    <table border="1">
+        <tr>
+            <th>Дата показа</th>
+            <th>Номер выступления</th>
+            <th>Название</th>
+            <th>Описание</th>
+        </tr>
+
+        <tr th:each="performance : ${performances}">
+            <td th:utext="${performance.showDate}">..</td>
+            <td th:utext="${performance.performanceNumber}">..</td>
+            <td th:utext="${performance.name}">..</td>
+            <td th:utext="${performance.description}">..</td>
+        </tr>
+    </table>
+    <p>Постановка <select name="performanceId">
+        <option th:each="performance : ${performances}"
+                th:value="${performance.id}" th:text="${performance.id}"></option></select>
+    </p>
+    <p>Блок: <select name="seatBlock">
+        <option value="1">Задний</option>
+        <option value="2">Средний</option>
+        <option value="3">Передний</option>
+    </select></p>
+    <p>Ряд: <select name="rowSeats">
+        <option value="1">1</option>
+    </select></p>
+    <p>Место: <select name="seat">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+    </select></p>
+    <p><input type="submit" value="booking"></p>
+</form>
+</body>
+</html>
